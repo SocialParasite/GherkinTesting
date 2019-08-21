@@ -70,6 +70,64 @@ namespace ToDoApp.DomainTests
         {
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Valid name should be given for the ToDo-item")]
+        [NUnit.Framework.TestCaseAttribute("My ToDo-item 1", "may", null)]
+        [NUnit.Framework.TestCaseAttribute("", "may not", null)]
+        public virtual void ValidNameShouldBeGivenForTheToDo_Item(string value, string may, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid name should be given for the ToDo-item", null, exampleTags);
+#line 6
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 7
+ testRunner.Given("Eddie names a ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When(string.Format("he sets the name of the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then(string.Format("item name {0} be set", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Required data should be provided when adding a new ToDo-item")]
+        [NUnit.Framework.TestCaseAttribute("My ToDo-item", "may", null)]
+        [NUnit.Framework.TestCaseAttribute("", "may not", null)]
+        public virtual void RequiredDataShouldBeProvidedWhenAddingANewToDo_Item(string value, string may, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new ToDo-item", null, exampleTags);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 18
+ testRunner.Given("Eddie wants to add a new ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.When(string.Format("he enters a name for the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then(string.Format("ToDo-item {0} be saved as part of selected ToDo-list", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("It shall be possible to add tasks to ToDo-item")]
+        public virtual void ItShallBePossibleToAddTasksToToDo_Item()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("It shall be possible to add tasks to ToDo-item", null, ((string[])(null)));
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 28
+ testRunner.Given("Eddie has a ToDo-item open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 29
+ testRunner.When("he adds a task to the item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then("task may be added to the ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

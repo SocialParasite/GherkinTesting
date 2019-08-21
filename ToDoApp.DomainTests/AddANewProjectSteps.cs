@@ -98,9 +98,5 @@ namespace ToDoApp.DomainTests
             _project.AddTodoItem(_todoItem);
             Assert.IsNotEmpty(_project.ToDoItems);
         }
-
-
-
-
     }
 }

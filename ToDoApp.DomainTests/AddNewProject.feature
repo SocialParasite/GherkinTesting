@@ -1,5 +1,6 @@
 ﻿Feature: Project
-	PROJECT is a todo-list, which consists of todo-items, which in turn consist of task-items.
+	PROJECT is a single todo-list, which consists of todo-items, which in turn consist of task-items.
+		User may have more than one todo-lists.
 
 Scenario Outline: Valid name should be given for the ToDo-list
 	Given Eddie names a ToDo-list

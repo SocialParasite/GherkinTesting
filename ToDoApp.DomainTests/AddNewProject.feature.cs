@@ -31,8 +31,8 @@ namespace ToDoApp.DomainTests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project", "\tPROJECT is a todo-list, which consists of todo-items, which in turn consist of t" +
-                    "ask-items.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project", "\tPROJECT is a single todo-list, which consists of todo-items, which in turn consi" +
+                    "st of task-items.\r\n\t\tUser may have more than one todo-lists.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,14 +77,14 @@ namespace ToDoApp.DomainTests
         public virtual void ValidNameShouldBeGivenForTheToDo_List(string value, string may, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid name should be given for the ToDo-list", null, exampleTags);
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("Eddie names a ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.When(string.Format("he sets the name of the ToDo-list as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("Eddie names a ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+ testRunner.When(string.Format("he sets the name of the ToDo-list as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
  testRunner.Then(string.Format("name {0} be set", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -97,14 +97,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequiredDataShouldBeProvidedWhenAddingANewProject(string value, string may, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new project", null, exampleTags);
-#line 14
+#line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 15
- testRunner.Given("Eddie wants to add a new ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
- testRunner.When(string.Format("he enters a name for the ToDo-list as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("Eddie wants to add a new ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
+ testRunner.When(string.Format("he enters a name for the ToDo-list as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
  testRunner.Then(string.Format("ToDo-list {0} be saved", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -115,14 +115,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ItShallBePossibleToAddItemsToToDo_List()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("It shall be possible to add items to ToDo-list", null, ((string[])(null)));
-#line 24
+#line 25
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 25
- testRunner.Given("Eddie has a ToDo-list open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
- testRunner.When("he adds an item to the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("Eddie has a ToDo-list open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
+ testRunner.When("he adds an item to the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 28
  testRunner.Then("item may be added to the ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

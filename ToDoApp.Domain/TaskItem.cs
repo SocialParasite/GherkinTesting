@@ -6,16 +6,16 @@ namespace ToDoApp.Domain
 {
     public class TaskItem
     {
-        public string Title { get; private set; }
+        //public string Title { get; private set; }
 
-        public void SetTitle(string newTitle)
-        {
-            Title = newTitle;
-        }
+        //public void SetTitle(string newTitle)
+        //{
+        //    Title = newTitle;
+        //}
 
-        public void Save()
-        {
+        //public void Save()
+        //{
 
-        }
+        //}
     }
 }
