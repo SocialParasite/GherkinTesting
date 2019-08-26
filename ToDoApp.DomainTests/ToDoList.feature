@@ -1,5 +1,5 @@
 ﻿Feature: ToDo-List
-	TODO-LIST consists of todo-items, which in turn consist of task-items.
+	TODO-LIST consists of todo-items, which in turn may contain zero or more task-items.
 		User may have more than one todo-lists.
 
 Scenario: New ToDo-list

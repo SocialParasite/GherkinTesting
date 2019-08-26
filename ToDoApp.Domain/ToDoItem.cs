@@ -13,7 +13,7 @@ namespace ToDoApp.Domain
 
         [Required]
         [MinLength(1, ErrorMessage = "Items name should be at minimum 1 character long.")]
-        [MaxLength(256, ErrorMessage = "Items name should be maximum of 256 characters long.")]
+        [MaxLength(64, ErrorMessage = "Items name should be maximum of 64 characters long.")]
         public string Name { get; private set; }
 
         public ICollection<TaskItem> TaskItems { get; private set; }
