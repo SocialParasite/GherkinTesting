@@ -1,10 +1,15 @@
-﻿Feature: Project
-	PROJECT is a single todo-list, which consists of todo-items, which in turn consist of task-items.
+﻿Feature: ToDo-List
+	TODO-LIST consists of todo-items, which in turn consist of task-items.
 		User may have more than one todo-lists.
 
+Scenario: New ToDo-list
+	Given Eddie wants to create a new ToDo-list
+	When he enters a valid name for the list
+	Then the list may be created
+
 Scenario Outline: Valid name should be given for the ToDo-list
-	Given Eddie names a ToDo-list
-	When he sets the name of the ToDo-list as <value>
+	Given Eddie wants to name a ToDo-list
+	When he sets the name of the ToDo-list to <value>
 	Then name <may?> be set
 
 	Examples: Name should be required
@@ -13,7 +18,7 @@ Scenario Outline: Valid name should be given for the ToDo-list
 		|              | may not |
 
 Scenario Outline: Required data should be provided when adding a new project
-	Given Eddie wants to add a new ToDo-list
+	Given Eddie wants to create a new ToDo-list
 	When he enters a name for the ToDo-list as <value>
 	Then ToDo-list <may?> be saved
 
@@ -24,5 +29,5 @@ Scenario Outline: Required data should be provided when adding a new project
 
 Scenario: It shall be possible to add items to ToDo-list
 	Given Eddie has a ToDo-list open
-	When he adds an item to the list
+	When he wants to add a new or existing ToDo-item to the list
 	Then item may be added to the ToDo-list

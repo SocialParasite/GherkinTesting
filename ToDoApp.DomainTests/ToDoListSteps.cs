@@ -8,25 +8,44 @@ using ToDoApp.Domain;
 namespace ToDoApp.DomainTests
 {
     [Binding]
-    public class AddANewProjectSteps
+    public class ProjectSteps
     {
-        private Mock<IProjectRepository> projectRepositoryMock;
-        Project _project;
+        private Mock<IToDoListRepository> _toDoListRepositoryMock;
+        ToDoList _toDoList;
         private ToDoItem _todoItem;
         private Action _action;
 
-        [Given(@"Eddie names a ToDo-list")]
-        public void GivenEddieNamesAToDo_List()
+        [Given(@"Eddie wants to create a new ToDo-list")]
+        public void GivenEddieWantsToCreateANewToDo_List()
         {
-            projectRepositoryMock = new Mock<IProjectRepository>();
-
-            _project = new Project(projectRepositoryMock.Object);
+            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
+            _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
+        }
+        [When(@"he enters a valid name for the list")]
+        public void WhenHeEntersAValidNameForTheList()
+        {
+            _toDoList.SetName("My ToDo-list");
         }
 
-        [When(@"he sets the name of the ToDo-list as (.*)")]
+        [Then(@"the list may be created")]
+        public void ThenTheListMayBeSaved()
+        {
+            Action _action = async () => await _toDoList.SaveAsync();
+            Assert.DoesNotThrow(_action.Invoke);
+        }
+
+        [Given(@"Eddie wants to name a ToDo-list")]
+        public void GivenEddieNamesAToDo_List()
+        {
+            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
+
+            _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
+        }
+
+        [When(@"he sets the name of the ToDo-list to (.*)")]
         public void WhenHeSetsTheNameOfTheToDo_List(string name)
         {
-            _action = () =>_project.SetName(name);
+            _action = () => _toDoList.SetName(name);
         }
 
         [Then(@"name (.*) be set")]
@@ -44,20 +63,12 @@ namespace ToDoApp.DomainTests
             }
         }
 
-        [Given(@"Eddie wants to add a new ToDo-list")]
-        public void GivenEddieWantsToAddANewProject()
-        {
-            projectRepositoryMock = new Mock<IProjectRepository>();
-
-            _project = new Project(projectRepositoryMock.Object);    
-        }
-
         [When(@"he enters a name for the ToDo-list as (.*)")]
         public void WhenHeSetsTheNameOfTheProject(string name)
         {
             if (name != null && name != String.Empty)
             {
-                _project.SetName(name);
+                _toDoList.SetName(name);
             }
         }
 
@@ -68,12 +79,12 @@ namespace ToDoApp.DomainTests
 
             if (expected)
             {
-                Action action = async () => await _project.SaveAsync();
+                Action action = async () => await _toDoList.SaveAsync();
                 Assert.DoesNotThrow(action.Invoke);
             }
             else
             {
-                Func<Task> action = async () => await _project.SaveAsync();
+                Func<Task> action = async () => await _toDoList.SaveAsync();
                 Assert.ThrowsAsync<ArgumentNullException>(action.Invoke);
             }
         }
@@ -81,12 +92,12 @@ namespace ToDoApp.DomainTests
         [Given(@"Eddie has a ToDo-list open")]
         public void GivenEddieHasAToDo_ListOpen()
         {
-            projectRepositoryMock = new Mock<IProjectRepository>();
+            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
 
-            _project = new Project(projectRepositoryMock.Object);
+            _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
         }
 
-        [When(@"he adds an item to the list")]
+        [When(@"he wants to add a new or existing ToDo-item to the list")]
         public void WhenHeAddsAnItemToTheList()
         {
             _todoItem = new ToDoItem();
@@ -95,8 +106,8 @@ namespace ToDoApp.DomainTests
         [Then(@"item may be added to the ToDo-list")]
         public void ThenItemMayBeAddedToTheToDo_List()
         {
-            _project.AddTodoItem(_todoItem);
-            Assert.IsNotEmpty(_project.ToDoItems);
+            _toDoList.AddTodoItem(_todoItem);
+            Assert.IsNotEmpty(_toDoList.ToDoItems);
         }
     }
 }

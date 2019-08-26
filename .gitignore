@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+connectionString.json
+ToDoApp.UI.TestConsole
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

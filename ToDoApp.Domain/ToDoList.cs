@@ -1,26 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 
 namespace ToDoApp.Domain
 {
-    public class Project
+    public class ToDoList
     {
-        private readonly IProjectRepository _projectRepository;
+        internal ToDoList() { }
 
-        public Project(IProjectRepository projectRepository)
+        public ToDoList(IToDoListRepository toDoListRepository)
         {
-            _projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
+            _toDoListRepository = toDoListRepository ?? throw new ArgumentNullException(nameof(toDoListRepository));
         }
 
+        private readonly IToDoListRepository _toDoListRepository;
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; private set; }
+
+        [Required]
+        [MinLength(1, ErrorMessage = "ToDo-list name should be at minimum 1 character long.")]
+        [MaxLength(64, ErrorMessage = "ToDo-list name should be maximum of 64 characters long.")]
         public string Name { get; private set; }
+
         public ICollection<ToDoItem> ToDoItems { get; private set; }
 
         public void SetName(string name)
         {
             if (name is null || name == String.Empty)
                 throw new ArgumentNullException(nameof(name), "Name can't be null or empty.");
+
+            if (name.Length > 64)
+                throw new ArgumentOutOfRangeException(nameof(name), "Name can not be longer than 64 characters.");
 
             Name = name;
         }
@@ -39,7 +52,7 @@ namespace ToDoApp.Domain
         {
             if (Name != null && Name != String.Empty)
             {
-                await _projectRepository.SaveAsync();
+                await _toDoListRepository.SaveAsync();
             }
             else
                 throw new ArgumentNullException(nameof(Name), "Name is not set! Enter a name for the new Todo-list before saving!");

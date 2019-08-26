@@ -12,7 +12,7 @@ namespace ToDoApp.DomainTests
     {
         private ToDoItem _item;
         private Action _action;
-        Project _project;
+        ToDoList _toDoList;
         TaskItem _taskItem;
         
         [Given(@"Eddie names a ToDo-item")]
@@ -46,8 +46,8 @@ namespace ToDoApp.DomainTests
         public void GivenEddieWantsToAddANewToDo_Item()
         {
             _item = new ToDoItem();
-            var projectRepositoryMock = new Mock<IProjectRepository>();
-            _project = new Project(projectRepositoryMock.Object);
+            var toDoListRepositoryMock = new Mock<IToDoListRepository>();
+            _toDoList = new ToDoList(toDoListRepositoryMock.Object);
         }
 
         [When(@"he enters a name for the ToDo-item as (.*)")]
@@ -63,13 +63,13 @@ namespace ToDoApp.DomainTests
 
             if (expected)
             {
-                _project.AddTodoItem(_item);
-                Action action = async () => await _project.SaveAsync();
+                _toDoList.AddTodoItem(_item);
+                Action action = async () => await _toDoList.SaveAsync();
                 Assert.DoesNotThrow(action.Invoke);
             }
             else
             {
-                Func<Task> action = async () => await _project.SaveAsync();
+                Func<Task> action = async () => await _toDoList.SaveAsync();
                 Assert.ThrowsAsync<ArgumentNullException>(action.Invoke);
             }
         }
