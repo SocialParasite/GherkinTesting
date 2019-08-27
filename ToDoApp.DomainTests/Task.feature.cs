@@ -24,7 +24,7 @@ namespace ToDoApp.DomainTests
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AddNewTask.feature"
+#line 1 "Task.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

@@ -2,7 +2,7 @@
 	TODO-LIST consists of todo-items, which in turn may contain zero or more task-items.
 		User may have more than one todo-lists.
 
-Scenario: New ToDo-list
+Scenario: Adding new ToDo-list
 	Given Eddie wants to create a new ToDo-list
 	When he enters a valid name for the list
 	Then the list may be created
@@ -17,6 +17,14 @@ Scenario Outline: Valid name should be given for the ToDo-list
 		| My ToDo-list | may     |
 		|              | may not |
 
+Scenario: Detect too long name
+	Given Eddie wants to name a ToDo-list
+	When he enters a name that is too long
+	  """
+	  I don’t know how I should name this list, so I’m just typing some random stuff here.
+	  """
+	Then Eddie should be informed that the name is too long
+
 Scenario Outline: Required data should be provided when adding a new project
 	Given Eddie wants to create a new ToDo-list
 	When he enters a name for the ToDo-list as <value>
@@ -27,7 +35,7 @@ Scenario Outline: Required data should be provided when adding a new project
 		| My ToDo-list | may     |
 		|              | may not |
 
-Scenario: It shall be possible to add items to ToDo-list
+Scenario: Adding ToDo-items to ToDo-list
 	Given Eddie has a ToDo-list open
 	When he wants to add a new or existing ToDo-item to the list
 	Then item may be added to the ToDo-list

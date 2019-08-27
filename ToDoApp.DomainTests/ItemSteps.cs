@@ -8,7 +8,7 @@ using ToDoApp.Domain;
 namespace ToDoApp.DomainTests
 {
     [Binding]
-    public class AddANewItemSteps
+    public class ItemSteps
     {
         private ToDoItem _item;
         private Action _action;

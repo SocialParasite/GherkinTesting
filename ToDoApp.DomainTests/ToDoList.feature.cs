@@ -31,8 +31,8 @@ namespace ToDoApp.DomainTests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ToDo-List", "\tTODO-LIST consists of todo-items, which in turn consist of task-items.\r\n\t\tUser m" +
-                    "ay have more than one todo-lists.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ToDo-List", "\tTODO-LIST consists of todo-items, which in turn may contain zero or more task-it" +
+                    "ems.\r\n\t\tUser may have more than one todo-lists.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,10 +71,10 @@ namespace ToDoApp.DomainTests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("New ToDo-list")]
-        public virtual void NewToDo_List()
+        [NUnit.Framework.DescriptionAttribute("Adding new ToDo-list")]
+        public virtual void AddingNewToDo_List()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New ToDo-list", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding new ToDo-list", null, ((string[])(null)));
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -109,38 +109,58 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Detect too long name")]
+        public virtual void DetectTooLongName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Detect too long name", null, ((string[])(null)));
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 21
+ testRunner.Given("Eddie wants to name a ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+ testRunner.When("he enters a name that is too long", "I don’t know how I should name this list, so I’m just typing some random stuff he" +
+                    "re.", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then("Eddie should be informed that the name is too long", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Required data should be provided when adding a new project")]
         [NUnit.Framework.TestCaseAttribute("My ToDo-list", "may", null)]
         [NUnit.Framework.TestCaseAttribute("", "may not", null)]
         public virtual void RequiredDataShouldBeProvidedWhenAddingANewProject(string value, string may, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new project", null, exampleTags);
-#line 20
+#line 28
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 21
+#line 29
  testRunner.Given("Eddie wants to create a new ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 22
+#line 30
  testRunner.When(string.Format("he enters a name for the ToDo-list as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
+#line 31
  testRunner.Then(string.Format("ToDo-list {0} be saved", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("It shall be possible to add items to ToDo-list")]
-        public virtual void ItShallBePossibleToAddItemsToToDo_List()
+        [NUnit.Framework.DescriptionAttribute("Adding ToDo-items to ToDo-list")]
+        public virtual void AddingToDo_ItemsToToDo_List()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("It shall be possible to add items to ToDo-list", null, ((string[])(null)));
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding ToDo-items to ToDo-list", null, ((string[])(null)));
+#line 38
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 31
+#line 39
  testRunner.Given("Eddie has a ToDo-list open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 40
  testRunner.When("he wants to add a new or existing ToDo-item to the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 41
  testRunner.Then("item may be added to the ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

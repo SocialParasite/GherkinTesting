@@ -63,6 +63,18 @@ namespace ToDoApp.DomainTests
             }
         }
 
+        [When(@"he enters a name that is too long")]
+        public void WhenHeEntersANameThatIsTooLong(string multilineText)
+        {
+            _action = () => _toDoList.SetName(multilineText);
+        }
+
+        [Then(@"Eddie should be informed that the name is too long")]
+        public void ThenEddieShouldBeInformedThatTheNameIsTooLong()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(_action.Invoke);
+        }
+
         [When(@"he enters a name for the ToDo-list as (.*)")]
         public void WhenHeSetsTheNameOfTheProject(string name)
         {
