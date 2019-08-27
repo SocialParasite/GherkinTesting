@@ -1,7 +1,6 @@
 ﻿Feature: ToDo-item
-	Item is an item on todo-list to be done. An item may be divided to smaller units of work. 
-	These subitems are called tasks.
-	All tasks need to be completed before parent item may be marked as completed.
+	Item is a task on todo-list to be done. An item may be divided to smaller units of work, subtasks. 
+	All subtasks need to be completed before parent item may be marked as completed.
 
 Scenario Outline: Valid name should be given for the ToDo-item
 	Given Jill has a ToDo-item open
@@ -33,5 +32,11 @@ Scenario Outline: Required data should be provided when adding a new ToDo-item
 
 Scenario: It shall be possible to add tasks to ToDo-item
 	Given Jill has a ToDo-item open
-	When she adds a task to the item
-	Then task may be added to the ToDo-item
+	When she adds a subtask to the item
+	Then subtask may be added to the ToDo-item
+
+Scenario: Setting task as a subtask
+	Given Jill wants to set a task as a subtask to another task
+	When she has a subtask selected
+	And she chooses a parent task
+	Then the selected task is set as a child task of the chosen parent

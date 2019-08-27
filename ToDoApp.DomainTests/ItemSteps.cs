@@ -13,7 +13,7 @@ namespace ToDoApp.DomainTests
         private ToDoItem _item;
         private Action _action;
         ToDoList _toDoList;
-        TaskItem _taskItem;
+        ToDoItem _subtask;
 
         [Given(@"Jill has a ToDo-item open")]
         public void GivenJillNamesAToDo_Item()
@@ -87,19 +87,44 @@ namespace ToDoApp.DomainTests
             }
         }
 
-        [When(@"she adds a task to the item")]
+        [When(@"she adds a subtask to the item")]
         public void WhenSheAddsATaskToTheItem()
         {
-            _taskItem = new TaskItem();
+            _subtask = new ToDoItem();
         }
 
-        [Then(@"task may be added to the ToDo-item")]
+        [Then(@"subtask may be added to the ToDo-item")]
         public void ThenTaskMayBeAddedToTheToDo_Item()
         {
-            _item.AddTaskItem(_taskItem);
+            _item.AddTaskItem(_subtask);
             Assert.IsNotEmpty(_item.TaskItems);
         }
 
+        [Given(@"Jill wants to set a task as a subtask to another task")]
+        public void GivenJillWantsToSetATaskAsASubtaskToAnotherTask()
+        {
+            _subtask = new ToDoItem();
+        }
+
+        [When(@"she has a subtask selected")]
+        public void WhenSheHasASubtaskSelected()
+        {
+            _subtask.SetName("My Subtask 1");
+        }
+
+        [When(@"she chooses a parent task")]
+        public void WhenSheChoosesAParentTask()
+        {
+            _item = new ToDoItem();
+            _item.SetName("My Parent task");
+        }
+
+        [Then(@"the selected task is set as a child task of the chosen parent")]
+        public void ThenTheSelectedTaskIsSetAsAChildTaskOfTheChosenParent()
+        {
+            _subtask.SetParentTask(_item);
+            Assert.That(_subtask.ParentTask.Equals(_item));
+        }
 
     }
 }

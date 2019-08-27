@@ -4,15 +4,15 @@ Task is a small piece of work that belongs to a larger unit of work, called item
 Task cannot exist without a parent item.
 
 #Scenario: Adding a new task
-#	Given Eddie wants to add a new task
+#	Given Jeff wants to add a new task
 #	When he enters a title
 #	Then task may be saved
-
+#
 #Scenario: Setting task as a subtask
-#	Given Eddie wants to set a task as a subtask to another task
-#	When selects a task
+#	Given Jeff wants to set a task as a subtask to another task
+#	When he has a task selected
 #	And he sets a parent task
-#	Then the selected task is set as a child task of a parent
+#	Then the selected task is set as a child task of the parent
 
 #Scenario Outline: Required data should be provided when adding a new task
 #	
