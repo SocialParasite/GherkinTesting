@@ -14,15 +14,15 @@ namespace ToDoApp.DomainTests
         private Action _action;
         ToDoList _toDoList;
         TaskItem _taskItem;
-        
-        [Given(@"Eddie names a ToDo-item")]
-        public void GivenEddieNamesAToDo_Item()
+
+        [Given(@"Jill has a ToDo-item open")]
+        public void GivenJillNamesAToDo_Item()
         {
             _item = new ToDoItem();
         }
 
-        [When(@"he sets the name of the ToDo-item as (.*)")]
-        public void WhenHeSetsTheNameOfTheToDo_ItemAsMyToDo_Item(string name)
+        [When(@"she sets the name of the ToDo-item as (.*)")]
+        public void WhenSheSetsTheNameOfTheToDo_ItemAsMyToDo_Item(string name)
         {
             _action = () => _item.SetName(name);
         }
@@ -42,16 +42,29 @@ namespace ToDoApp.DomainTests
             }
         }
 
-        [Given(@"Eddie wants to add a new ToDo-item")]
-        public void GivenEddieWantsToAddANewToDo_Item()
+        [When(@"she enters a name that is too long for the item")]
+        public void WhenSheEntersANameThatIsTooLongForTheItem(string multilineText)
+        {
+            _action = () => _item.SetName(multilineText);
+        }
+
+        [Then(@"Jill should be informed that the name is too long for the item")]
+        public void ThenJillShouldBeInformedThatTheNameIsTooLongForTheItem()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(_action.Invoke);
+        }
+
+
+        [Given(@"Jill wants to add a new ToDo-item")]
+        public void GivenJillWantsToAddANewToDo_Item()
         {
             _item = new ToDoItem();
             var toDoListRepositoryMock = new Mock<IToDoListRepository>();
             _toDoList = new ToDoList(toDoListRepositoryMock.Object);
         }
 
-        [When(@"he enters a name for the ToDo-item as (.*)")]
-        public void WhenHeEntersANameForTheToDo_ItemAsMyToDo_Item(string name)
+        [When(@"she enters a name for the ToDo-item as (.*)")]
+        public void WhenSheEntersANameForTheToDo_ItemAsMyToDo_Item(string name)
         {
             _action = () => _item.SetName(name);
         }
@@ -74,14 +87,8 @@ namespace ToDoApp.DomainTests
             }
         }
 
-        [Given(@"Eddie has a ToDo-item open")]
-        public void GivenEddieHasAToDo_ItemOpen()
-        {
-            _item = new ToDoItem();
-        }
-
-        [When(@"he adds a task to the item")]
-        public void WhenHeAddsATaskToTheItem()
+        [When(@"she adds a task to the item")]
+        public void WhenSheAddsATaskToTheItem()
         {
             _taskItem = new TaskItem();
         }

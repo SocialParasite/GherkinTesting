@@ -21,6 +21,7 @@ namespace ToDoApp.DomainTests
             _toDoListRepositoryMock = new Mock<IToDoListRepository>();
             _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
         }
+
         [When(@"he enters a valid name for the list")]
         public void WhenHeEntersAValidNameForTheList()
         {

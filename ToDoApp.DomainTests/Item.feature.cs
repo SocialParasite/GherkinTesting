@@ -18,8 +18,8 @@ namespace ToDoApp.DomainTests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Add a new item")]
-    public partial class AddANewItemFeature
+    [NUnit.Framework.DescriptionAttribute("ToDo-item")]
+    public partial class ToDo_ItemFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,9 +31,9 @@ namespace ToDoApp.DomainTests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Add a new item", "Item is an item on todo-list to be done. An item may be divided to smaller units " +
-                    "of work. \r\nThese subitems are called tasks.\r\nAll tasks need to be completed befo" +
-                    "re parent item may be marked as completed.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ToDo-item", "\tItem is an item on todo-list to be done. An item may be divided to smaller units" +
+                    " of work. \r\n\tThese subitems are called tasks.\r\n\tAll tasks need to be completed b" +
+                    "efore parent item may be marked as completed.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,11 +82,31 @@ namespace ToDoApp.DomainTests
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("Eddie names a ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Jill has a ToDo-item open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When(string.Format("he sets the name of the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("she sets the name of the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.Then(string.Format("item name {0} be set", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Detect a too long name")]
+        public virtual void DetectATooLongName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Detect a too long name", null, ((string[])(null)));
+#line 16
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 17
+ testRunner.Given("Jill has a ToDo-item open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 18
+ testRunner.When("she enters a name that is too long for the item", "I don’t know how I should name this list, so I’m just typing some random stuff he" +
+                    "re.", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.Then("Jill should be informed that the name is too long for the item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -98,14 +118,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequiredDataShouldBeProvidedWhenAddingANewToDo_Item(string value, string may, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new ToDo-item", null, exampleTags);
-#line 17
+#line 24
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 18
- testRunner.Given("Eddie wants to add a new ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
- testRunner.When(string.Format("he enters a name for the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 25
+ testRunner.Given("Jill wants to add a new ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 26
+ testRunner.When(string.Format("she enters a name for the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
  testRunner.Then(string.Format("ToDo-item {0} be saved as part of selected ToDo-list", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -116,14 +136,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ItShallBePossibleToAddTasksToToDo_Item()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("It shall be possible to add tasks to ToDo-item", null, ((string[])(null)));
-#line 27
+#line 34
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 28
- testRunner.Given("Eddie has a ToDo-item open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 29
- testRunner.When("he adds a task to the item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
+#line 35
+ testRunner.Given("Jill has a ToDo-item open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+ testRunner.When("she adds a task to the item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
  testRunner.Then("task may be added to the ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

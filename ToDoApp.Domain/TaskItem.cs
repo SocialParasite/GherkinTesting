@@ -10,11 +10,18 @@ namespace ToDoApp.Domain
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; private set; }
-        //public string Title { get; private set; }
 
-        //public void SetTitle(string newTitle)
+        //[Required]
+        //[MinLength(1, ErrorMessage = "Items name should be at minimum 1 character long.")]
+        //[MaxLength(64, ErrorMessage = "Items name should be maximum of 64 characters long.")]
+        //public string Name { get; private set; }
+
+        //public void SetName(string name)
         //{
-        //    Title = newTitle;
+        //    if (name is null || name == String.Empty)
+        //        throw new ArgumentNullException(nameof(name), "Name can't be null or empty.");
+
+        //    Name = name;
         //}
 
         //public void Save()

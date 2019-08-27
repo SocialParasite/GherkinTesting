@@ -23,6 +23,9 @@ namespace ToDoApp.Domain
             if (name is null || name == String.Empty)
                 throw new ArgumentNullException(nameof(name), "Name can't be null or empty.");
 
+            if (name.Length > 64)
+                throw new ArgumentOutOfRangeException(nameof(name), "Name can not be longer than 64 characters.");
+
             Name = name;
         }
 
