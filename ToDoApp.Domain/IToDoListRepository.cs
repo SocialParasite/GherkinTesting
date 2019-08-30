@@ -2,8 +2,8 @@
 
 namespace ToDoApp.Domain
 {
-    public interface IToDoListRepository
+    public interface IToDoListRepository : IRepository<ToDoList>
     {
-        Task SaveAsync();
+        //Task SaveAsync();
     }
 }

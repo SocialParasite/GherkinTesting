@@ -21,6 +21,7 @@ namespace ToDoApp.Data.SqlServer
         public static IConfigurationRoot Configuration { get; private set; }
 
         public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<TaskItem> ToDoItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

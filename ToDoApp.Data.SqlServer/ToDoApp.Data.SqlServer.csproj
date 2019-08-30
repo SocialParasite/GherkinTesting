@@ -5,6 +5,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190828163257_baseClass.cs" />
+    <Compile Remove="Migrations\20190828163257_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828163631_baseClass.cs" />
+    <Compile Remove="Migrations\20190828163631_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828163802_baseClass.cs" />
+    <Compile Remove="Migrations\20190828163802_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828164400_baseClass.cs" />
+    <Compile Remove="Migrations\20190828164400_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828164511_baseClass.cs" />
+    <Compile Remove="Migrations\20190828164511_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828165632_baseClass.cs" />
+    <Compile Remove="Migrations\20190828165632_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828170554_baseClass.cs" />
+    <Compile Remove="Migrations\20190828170554_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828170745_baseClass.cs" />
+    <Compile Remove="Migrations\20190828170745_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828170931_baseClass.cs" />
+    <Compile Remove="Migrations\20190828170931_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828171150_baseClass.cs" />
+    <Compile Remove="Migrations\20190828171150_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190828171305_baseClass.cs" />
+    <Compile Remove="Migrations\20190828171305_baseClass.Designer.cs" />
+    <Compile Remove="Migrations\20190829153214_redone.cs" />
+    <Compile Remove="Migrations\20190829153214_redone.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
       <PrivateAssets>all</PrivateAssets>

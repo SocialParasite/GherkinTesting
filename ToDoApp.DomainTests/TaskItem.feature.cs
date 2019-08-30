@@ -24,7 +24,7 @@ namespace ToDoApp.DomainTests
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Item.feature"
+#line 1 "TaskItem.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -112,21 +112,21 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Required data should be provided when adding a new ToDo-item")]
+        [NUnit.Framework.DescriptionAttribute("Required data should be provided when adding a new task item")]
         [NUnit.Framework.TestCaseAttribute("My ToDo-item", "may", null)]
         [NUnit.Framework.TestCaseAttribute("", "may not", null)]
-        public virtual void RequiredDataShouldBeProvidedWhenAddingANewToDo_Item(string value, string may, string[] exampleTags)
+        public virtual void RequiredDataShouldBeProvidedWhenAddingANewTaskItem(string value, string may, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new ToDo-item", null, exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required data should be provided when adding a new task item", null, exampleTags);
 #line 23
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 24
- testRunner.Given("Jill wants to add a new ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Jill wants to add a new task item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 25
- testRunner.When(string.Format("she enters a name for the ToDo-item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("she enters a name for the task item as {0}", value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
- testRunner.Then(string.Format("ToDo-item {0} be saved as part of selected ToDo-list", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("ToDo-item {0} be saved", may), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -150,21 +150,57 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Setting task as a subtask")]
-        public virtual void SettingTaskAsASubtask()
+        [NUnit.Framework.DescriptionAttribute("Adding a task to ToDo-list")]
+        public virtual void AddingATaskToToDo_List()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Setting task as a subtask", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a task to ToDo-list", null, ((string[])(null)));
 #line 38
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 39
- testRunner.Given("Jill wants to set a task as a subtask to another task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Jill wants to add a task to ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 40
- testRunner.When("she has a subtask selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("she has a task selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 41
- testRunner.And("she chooses a parent task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("she chooses a todo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
- testRunner.Then("the selected task is set as a child task of the chosen parent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the selected task is set as an item on the the chosen list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Tasks creation date and time")]
+        public virtual void TasksCreationDateAndTime()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tasks creation date and time", null, ((string[])(null)));
+#line 44
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 45
+ testRunner.Given("Jill adds a new ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 46
+ testRunner.When("she saves it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 47
+ testRunner.Then("tasks creation date and time are logged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding task as a subtask")]
+        public virtual void AddingTaskAsASubtask()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding task as a subtask", null, ((string[])(null)));
+#line 50
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 51
+ testRunner.Given("Jill has a task open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 52
+ testRunner.And("she has another task she wants to set as a subtask", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+ testRunner.Then("task should be added as a subtask to parent task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

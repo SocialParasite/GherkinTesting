@@ -12,7 +12,7 @@ namespace ToDoApp.DomainTests
     {
         private Mock<IToDoListRepository> _toDoListRepositoryMock;
         ToDoList _toDoList;
-        private ToDoItem _todoItem;
+        private TaskItem _todoItem;
         private Action _action;
 
         [Given(@"Eddie wants to create a new ToDo-list")]
@@ -113,14 +113,15 @@ namespace ToDoApp.DomainTests
         [When(@"he wants to add a new or existing ToDo-item to the list")]
         public void WhenHeAddsAnItemToTheList()
         {
-            _todoItem = new ToDoItem();
+            _todoItem = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
         }
 
         [Then(@"item may be added to the ToDo-list")]
         public void ThenItemMayBeAddedToTheToDo_List()
         {
-            _toDoList.AddTodoItem(_todoItem);
-            Assert.IsNotEmpty(_toDoList.ToDoItems);
+            Assert.IsNull(_toDoList.TaskItems);
+            _toDoList.AddTaskItem(_todoItem);
+            Assert.IsNotEmpty(_toDoList.TaskItems);
         }
     }
 }

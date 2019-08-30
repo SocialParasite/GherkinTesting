@@ -25,7 +25,7 @@ namespace ToDoApp.Domain
         [MaxLength(64, ErrorMessage = "ToDo-list name should be maximum of 64 characters long.")]
         public string Name { get; private set; }
 
-        public ICollection<ToDoItem> ToDoItems { get; private set; }
+        public ICollection<TaskItem> TaskItems { get; private set; }
 
         public void SetName(string name)
         {
@@ -38,14 +38,14 @@ namespace ToDoApp.Domain
             Name = name;
         }
 
-        public void AddTodoItem(ToDoItem item)
+        public void AddTaskItem(TaskItem item)
         {
-            if (ToDoItems is null)
+            if (TaskItems is null)
             {
-                ToDoItems = new List<ToDoItem>();
+                TaskItems = new List<TaskItem>();
             }
 
-            ToDoItems.Add(item);
+            TaskItems.Add(item);
         }
 
         public async Task SaveAsync()
