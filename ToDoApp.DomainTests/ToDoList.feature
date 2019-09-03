@@ -39,3 +39,8 @@ Scenario: Adding ToDo-items to ToDo-list
 	Given Eddie has a ToDo-list open
 	When he wants to add a new or existing ToDo-item to the list
 	Then item may be added to the ToDo-list
+
+Scenario: ToDo-lists creation date and time 
+	Given Eddie adds a new ToDo-list
+	When he saves it
+	Then lists creation date and time are logged

@@ -30,11 +30,16 @@ Scenario Outline: Required data should be provided when adding a new subtask
 
 Scenario: Adding a subtask to Task item
 	Given Jeff wants to add a subtask to task item
-	When she has a subtask selected
-	And she chooses a task item
+	When he has a subtask selected
+	And he chooses a task item
 	Then the selected subtask is set as an child task on the the chosen task item
 
-Scenario: Subasks creation date and time
+Scenario: Subtasks creation date and time
 	Given Jeff adds a new subtask
 	When he saves the subtask
 	Then subtasks creation date and time are logged
+
+Scenario: Subtasks modification
+	Given Jeff modifies a subtask
+	When he saves the modified subtask
+	Then subtasks creation date and time are not changed

@@ -14,7 +14,8 @@ namespace ToDoApp.DomainTests
         private TaskItem _item;
         private Action _action;
         ToDoList _toDoList;
-        TaskItem _subtask;
+        Subtask _subtask;
+        Mock<TaskItem> _mock;
 
         [Given(@"Jill has a ToDo-item open")]
         public void GivenJillNamesAToDo_Item()
@@ -88,13 +89,13 @@ namespace ToDoApp.DomainTests
         [When(@"she adds a subtask to the item")]
         public void WhenSheAddsATaskToTheItem()
         {
-            _subtask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
+            _subtask = new Subtask(new Mock<IRepository<Subtask>>().Object);
         }
 
         [Then(@"subtask may be added to the ToDo-item")]
         public void ThenTaskMayBeAddedToTheToDo_Item()
         {
-            _item.AddSubtask(_item);
+            _item.AddSubtask(_subtask);
             Assert.IsNotEmpty(_item.Subtasks);
         }
 
@@ -113,7 +114,7 @@ namespace ToDoApp.DomainTests
         [When(@"she chooses a todo-list")]
         public void WhenSheChoosesATodo_List()
         {
-            _toDoList = new ToDoList(new Mock<IToDoListRepository>().Object);
+            _toDoList = new ToDoList(new Mock<IRepository<ToDoList>>().Object);
             _toDoList.SetName("My todo");
         }
 
@@ -151,19 +152,41 @@ namespace ToDoApp.DomainTests
             _item.SetName("Parent task");
         }
 
-        [Given(@"she has another task she wants to set as a subtask")]
-        public void GivenSheHasAnotherTaskSheWantsToSetAsASubtask()
+        [Given(@"Jill modifies a ToDo-item")]
+        public void GivenJillModifiesAToDo_Item()
         {
-            _subtask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
-            _subtask.SetName("Convert to subtask");
+            var repo = new Mock<IRepository<TaskItem>>().Object;
+            _mock = new Mock<TaskItem>(repo);
+            _mock.Object.SetName("Old item");
+            
+            _mock.SetupGet(x => x.CreationDate).Returns(DateTime.Now.AddDays(-1));
         }
 
-        [Then(@"task should be added as a subtask to parent task")]
-        public void ThenTaskShouldBeAddedAsASubtaskToParentTask()
+        [When(@"she saves the modified item")]
+        public async Task WhenSheSavesTheModifiedItem()
         {
-            _item.AddSubtask(_subtask);
-            Assert.That(_item.Subtasks.Last(), Is.TypeOf<Subtask>());
+            await _mock.Object.SaveItemAsync();
         }
+
+        [Then(@"tasks creation date and time are not changed")]
+        public void ThenTasksCreationDateAndTimeAreNotChanged()
+        {
+            Assert.That(_mock.Object.CreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
+        }
+
+        //[Given(@"she has another task she wants to set as a subtask")]
+        //public void GivenSheHasAnotherTaskSheWantsToSetAsASubtask()
+        //{
+        //    _subtask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
+        //    _subtask.SetName("Convert to subtask");
+        //}
+
+        //[Then(@"task should be added as a subtask to parent task")]
+        //public void ThenTaskShouldBeAddedAsASubtaskToParentTask()
+        //{
+        //    _item.AddSubtask(_subtask);
+        //    Assert.That(_item.Subtasks.Last(), Is.TypeOf<Subtask>());
+        //}
 
     }
 }

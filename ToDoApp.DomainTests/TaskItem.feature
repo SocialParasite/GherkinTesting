@@ -41,21 +41,20 @@ Scenario: Adding a task to ToDo-list
 	And she chooses a todo-list
 	Then the selected task is set as an item on the the chosen list
 
-Scenario: Tasks creation date and time 
+Scenario: Tasks creation date and time
 	Given Jill adds a new ToDo-item
 	When she saves it
 	Then tasks creation date and time are logged
 
+Scenario: Tasks modification 
+	Given Jill modifies a ToDo-item
+	When she saves the modified item
+	Then tasks creation date and time are not changed
 
-Scenario: Adding task as a subtask
-	Given Jill has a task open
-	And she has another task she wants to set as a subtask
-	Then task should be added as a subtask to parent task
-#
-#	Given Eddie wants to add a new task
-#	And he leaves title empty
-#	Then task may not be saved
-#
+#Scenario: Adding task as a subtask
+#	Given Jill has a task open
+#	And she has another task she wants to set as a subtask
+#	Then task should be added as a subtask to parent task
 #Scenario: Setting a deadline
 #
 #	Given Eddie wants to set a deadline for the task

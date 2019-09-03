@@ -140,9 +140,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 32
  testRunner.Given("Jeff wants to add a subtask to task item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 33
- testRunner.When("she has a subtask selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("he has a subtask selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 34
- testRunner.And("she chooses a task item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("he chooses a task item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
  testRunner.Then("the selected subtask is set as an child task on the the chosen task item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -150,10 +150,10 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Subasks creation date and time")]
-        public virtual void SubasksCreationDateAndTime()
+        [NUnit.Framework.DescriptionAttribute("Subtasks creation date and time")]
+        public virtual void SubtasksCreationDateAndTime()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Subasks creation date and time", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Subtasks creation date and time", null, ((string[])(null)));
 #line 37
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -163,6 +163,24 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("he saves the subtask", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
  testRunner.Then("subtasks creation date and time are logged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Subtasks modification")]
+        public virtual void SubtasksModification()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Subtasks modification", null, ((string[])(null)));
+#line 42
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 43
+ testRunner.Given("Jeff modifies a subtask", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
+ testRunner.When("he saves the modified subtask", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 45
+ testRunner.Then("subtasks creation date and time are not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

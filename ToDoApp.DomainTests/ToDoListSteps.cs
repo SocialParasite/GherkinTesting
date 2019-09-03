@@ -10,7 +10,7 @@ namespace ToDoApp.DomainTests
     [Binding]
     public class ProjectSteps
     {
-        private Mock<IToDoListRepository> _toDoListRepositoryMock;
+        private Mock<IRepository<ToDoList>> _toDoListRepositoryMock;
         ToDoList _toDoList;
         private TaskItem _todoItem;
         private Action _action;
@@ -18,7 +18,7 @@ namespace ToDoApp.DomainTests
         [Given(@"Eddie wants to create a new ToDo-list")]
         public void GivenEddieWantsToCreateANewToDo_List()
         {
-            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
+            _toDoListRepositoryMock = new Mock<IRepository<ToDoList>>();
             _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
         }
 
@@ -31,14 +31,14 @@ namespace ToDoApp.DomainTests
         [Then(@"the list may be created")]
         public void ThenTheListMayBeSaved()
         {
-            Action _action = async () => await _toDoList.SaveAsync();
+            Action _action = async () => await _toDoList.SaveItemAsync();
             Assert.DoesNotThrow(_action.Invoke);
         }
 
         [Given(@"Eddie wants to name a ToDo-list")]
         public void GivenEddieNamesAToDo_List()
         {
-            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
+            _toDoListRepositoryMock = new Mock<IRepository<ToDoList>>();
 
             _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
         }
@@ -92,12 +92,12 @@ namespace ToDoApp.DomainTests
 
             if (expected)
             {
-                Action action = async () => await _toDoList.SaveAsync();
+                Action action = async () => await _toDoList.SaveItemAsync();
                 Assert.DoesNotThrow(action.Invoke);
             }
             else
             {
-                Func<Task> action = async () => await _toDoList.SaveAsync();
+                Func<Task> action = async () => await _toDoList.SaveItemAsync();
                 Assert.ThrowsAsync<ArgumentNullException>(action.Invoke);
             }
         }
@@ -105,7 +105,7 @@ namespace ToDoApp.DomainTests
         [Given(@"Eddie has a ToDo-list open")]
         public void GivenEddieHasAToDo_ListOpen()
         {
-            _toDoListRepositoryMock = new Mock<IToDoListRepository>();
+            _toDoListRepositoryMock = new Mock<IRepository<ToDoList>>();
 
             _toDoList = new ToDoList(_toDoListRepositoryMock.Object);
         }
@@ -123,5 +123,26 @@ namespace ToDoApp.DomainTests
             _toDoList.AddTaskItem(_todoItem);
             Assert.IsNotEmpty(_toDoList.TaskItems);
         }
+
+        [Given(@"Eddie adds a new ToDo-list")]
+        public void GivenEddieAddsANewToDo_List()
+        {
+            _toDoList = new ToDoList(new Mock<IRepository<ToDoList>>().Object);
+            _toDoList.SetName("my todo");
+        }
+
+        [When(@"he saves it")]
+        public async Task WhenHeSavesIt()
+        {
+            await _toDoList.SaveItemAsync();
+        }
+
+        [Then(@"lists creation date and time are logged")]
+        public void ThenListsCreationDateAndTimeAreLogged()
+        {
+            var creationDate = _toDoList.CreationDate;
+            Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
+        }
+
     }
 }

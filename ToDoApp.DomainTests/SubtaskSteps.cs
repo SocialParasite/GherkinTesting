@@ -13,6 +13,7 @@ namespace ToDoApp.DomainTests
         private Subtask _subtask;
         private Action _action;
         TaskItem _taskItem;
+        Mock<Subtask> _mock;
 
         [Given(@"Jeff has a subtask open")]
         public void GivenJeffHasASubtaskOpen()
@@ -89,14 +90,14 @@ namespace ToDoApp.DomainTests
             _subtask = new Subtask(new Mock<IRepository<Subtask>>().Object);
         }
 
-        [When(@"she has a subtask selected")]
-        public void WhenSheHasASubtaskSelected()
+        [When(@"he has a subtask selected")]
+        public void WhenHeHasASubtaskSelected()
         {
             _subtask.SetName("Name of the subtask");
         }
 
-        [When(@"she chooses a task item")]
-        public void WhenSheChoosesATaskItem()
+        [When(@"he chooses a task item")]
+        public void WhenHeChoosesATaskItem()
         {
             _taskItem = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
             _taskItem.SetName("Parent task");
@@ -128,5 +129,28 @@ namespace ToDoApp.DomainTests
             var creationDate = _subtask.CreationDate;
             Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
         }
+
+        [Given(@"Jeff modifies a subtask")]
+        public void GivenJeffModifiesASubtask()
+        {
+            var repo = new Mock<IRepository<Subtask>>().Object;
+            _mock = new Mock<Subtask>(repo);
+            _mock.Object.SetName("Old subtask");
+
+            _mock.SetupGet(x => x.CreationDate).Returns(DateTime.Now.AddDays(-1));
+        }
+
+        [When(@"he saves the modified subtask")]
+        public async Task WhenHeSavesTheModifiedSubtask()
+        {
+            await _mock.Object.SaveItemAsync();
+        }
+
+        [Then(@"subtasks creation date and time are not changed")]
+        public void ThenSubtasksCreationDateAndTimeAreNotChanged()
+        {
+            Assert.That(_mock.Object.CreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
+        }
+
     }
 }

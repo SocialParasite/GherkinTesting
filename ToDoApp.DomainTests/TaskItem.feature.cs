@@ -188,19 +188,19 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding task as a subtask")]
-        public virtual void AddingTaskAsASubtask()
+        [NUnit.Framework.DescriptionAttribute("Tasks modification")]
+        public virtual void TasksModification()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding task as a subtask", null, ((string[])(null)));
-#line 50
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tasks modification", null, ((string[])(null)));
+#line 49
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 50
+ testRunner.Given("Jill modifies a ToDo-item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 51
- testRunner.Given("Jill has a task open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("she saves the modified item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
- testRunner.And("she has another task she wants to set as a subtask", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 53
- testRunner.Then("task should be added as a subtask to parent task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("tasks creation date and time are not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

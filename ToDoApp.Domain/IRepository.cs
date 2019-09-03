@@ -4,6 +4,6 @@ namespace ToDoApp.Domain
 {
     public interface IRepository<T> 
     {
-        Task SaveAsync();
+        Task SaveItemAsync();
     }
 }

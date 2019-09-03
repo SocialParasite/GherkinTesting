@@ -165,6 +165,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("ToDo-lists creation date and time")]
+        public virtual void ToDo_ListsCreationDateAndTime()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ToDo-lists creation date and time", null, ((string[])(null)));
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 44
+ testRunner.Given("Eddie adds a new ToDo-list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 45
+ testRunner.When("he saves it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 46
+ testRunner.Then("lists creation date and time are logged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
