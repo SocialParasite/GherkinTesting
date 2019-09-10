@@ -43,3 +43,8 @@ Scenario: Subtasks modification
 	Given Jeff modifies a subtask
 	When he saves the modified subtask
 	Then subtasks creation date and time are not changed
+
+Scenario: Setting a deadline
+	Given Jeff wants to set a deadline for a subtask
+	When he has a subtask selected
+	Then he should be able to select a deadline date for the subtask

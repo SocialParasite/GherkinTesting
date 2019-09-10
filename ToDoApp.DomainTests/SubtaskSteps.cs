@@ -152,5 +152,16 @@ namespace ToDoApp.DomainTests
             Assert.That(_mock.Object.CreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
+        [Given(@"Jeff wants to set a deadline for a subtask")]
+        public void GivenJeffWantsToSetADeadlineForASubtask()
+        {
+            _subtask = new Subtask(new Mock<IRepository<Subtask>>().Object);
+        }
+
+        [Then(@"he should be able to select a deadline date for the subtask")]
+        public void ThenHeShouldBeAbleToSelectADeadlineDateForTheSubtask()
+        {
+            _subtask.SetDeadline(DateTime.Today.AddDays(10));
+        }
     }
 }
