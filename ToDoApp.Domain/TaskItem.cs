@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToDoApp.Domain
 {
-    public class TaskItem : BaseEntity<TaskItem>, IToDoItem
+    public class TaskItem : BaseEntity<TaskItem>
     {
         internal TaskItem() { }
 
@@ -16,19 +16,16 @@ namespace ToDoApp.Domain
         public ICollection<Subtask> Subtasks { get; private set; }
         public ToDoList ParentList { get; private set; }
 
-        public void AddSubtask(IToDoItem item)
+        public DateTime Deadline { get; private set; }
+
+        public void AddSubtask(Subtask item)
         {
             if (Subtasks is null)
             {
                 Subtasks = new List<Subtask>();
             }
 
-            if (item is Subtask)
-            {
-                Subtasks.Add(item as Subtask);
-            }
-            //else
-            //    Subtasks.Add(ConvertToSubtask(item as TaskItem));
+            Subtasks.Add(item);
         }
 
         public void SetParentToDoList(ToDoList parent)
@@ -39,9 +36,9 @@ namespace ToDoApp.Domain
             }
         }
 
-        ////public Subtask ConvertToSubtask(TaskItem taskItem)
-        ////{
-        ////    return new Subtask(taskItem.Id, Name = taskItem.Name, taskItem.CreationDate, this.Id);
-        ////}
+        public void SetDeadline(DateTime deadline)
+        {
+            Deadline = deadline;
+        }
     }
 }

@@ -31,9 +31,9 @@ namespace ToDoApp.DomainTests
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ToDo-item", "\tItem is a task on todo-list to be done. An item may be divided to smaller units " +
-                    "of work, subtasks. \r\n\tAll subtasks need to be completed before parent item may b" +
-                    "e marked as completed.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ToDo-item", "\tToDo-item is a task on todo-list to be done. An item may be divided to smaller u" +
+                    "nits of work, subtasks. \r\n\tAll subtasks need to be completed before parent item " +
+                    "may be marked as completed.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -201,6 +201,24 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("she saves the modified item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
  testRunner.Then("tasks creation date and time are not changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Setting a deadline")]
+        public virtual void SettingADeadline()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Setting a deadline", null, ((string[])(null)));
+#line 54
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 55
+ testRunner.Given("Eddie wants to set a deadline for the task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 56
+ testRunner.When("he has a task selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 57
+ testRunner.Then("he should be able to select a deadline date for the task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

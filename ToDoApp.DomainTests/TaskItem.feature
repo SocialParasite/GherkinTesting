@@ -1,5 +1,5 @@
 ﻿Feature: ToDo-item
-	Item is a task on todo-list to be done. An item may be divided to smaller units of work, subtasks. 
+	ToDo-item is a task on todo-list to be done. An item may be divided to smaller units of work, subtasks. 
 	All subtasks need to be completed before parent item may be marked as completed.
 
 Scenario Outline: Valid name should be given for the ToDo-item
@@ -46,20 +46,15 @@ Scenario: Tasks creation date and time
 	When she saves it
 	Then tasks creation date and time are logged
 
-Scenario: Tasks modification 
+Scenario: Tasks modification
 	Given Jill modifies a ToDo-item
 	When she saves the modified item
 	Then tasks creation date and time are not changed
 
-#Scenario: Adding task as a subtask
-#	Given Jill has a task open
-#	And she has another task she wants to set as a subtask
-#	Then task should be added as a subtask to parent task
-#Scenario: Setting a deadline
-#
-#	Given Eddie wants to set a deadline for the task
-#	When he sets a dealine date
-#	Then task should get a deadline
+Scenario: Setting a deadline
+	Given Eddie wants to set a deadline for the task
+	When he has a task selected
+	Then he should be able to select a deadline date for the task
 #
 #Scenario: Setting a category for the task
 #

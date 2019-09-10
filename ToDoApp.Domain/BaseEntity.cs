@@ -41,7 +41,8 @@ namespace ToDoApp.Domain
         {
             if (Name != null && Name != String.Empty)
             {
-                if(CreationDate == default) CreationDate = DateTime.Now;
+                if(CreationDate == default)
+                    CreationDate = DateTime.Now;
 
                 await _repository.SaveItemAsync();
             }

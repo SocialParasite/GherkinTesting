@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToDoApp.Domain
 {
-    public class Subtask : BaseEntity<Subtask>, IToDoItem
+    public class Subtask : BaseEntity<Subtask>
     {
         internal Subtask() { }
 
