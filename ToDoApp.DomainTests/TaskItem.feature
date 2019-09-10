@@ -56,12 +56,16 @@ Scenario: Setting a deadline
 	When he has a task selected
 	Then he should be able to select a deadline date for the task
 
-#Scenario: Setting a categories for the task
-#	Given Eddie wants to set a category for the task
-#	When he has a task selected
-#	And selects a category
-#	Then task should be added to that category
-##
+Scenario Outline: Setting a categories for the task
+	Given Eddie has a task with <value> categories
+	When he sets a category for the task
+	Then task should be added to that category
+
+	Examples: Task could belong to more than one categories
+		| value |
+		| 0     |
+		| 1     |
+#
 #	Given Eddie wants to add a new category
 #	When he enters a category name
 #	And sets a identifying color for the category

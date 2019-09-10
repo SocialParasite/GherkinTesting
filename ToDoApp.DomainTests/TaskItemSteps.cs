@@ -192,6 +192,37 @@ namespace ToDoApp.DomainTests
             _item.SetDeadline(DateTime.Today.AddDays(10));
         }
 
+        [Given(@"Eddie has a task with (.*) categories")]
+        public void GivenEddieHasATaskWithCategories(int count)
+        {
+            _item = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
+            _item.SetName("Task with categories");
+
+            if (count > 0)
+            {
+                var cat = new Category(new Mock<IRepository<Category>>().Object);
+                cat.SetName("Category 1");
+                _item.AddCategory(cat);
+                Assert.That(_item.Categories, Is.Not.Empty);
+            }
+            else
+                Assert.That(_item.Categories, Is.Null);
+        }
+
+        [When(@"he sets a category for the task")]
+        public void WhenHeSetsACategoryForTheTask()
+        {
+            var newCat = new Category(new Mock<IRepository<Category>>().Object);
+            newCat.SetName("New Category");
+            _item.AddCategory(newCat);
+        }
+
+        [Then(@"task should be added to that category")]
+        public void ThenTaskShouldBeAddedToThatCategory()
+        {
+            Assert.That(_item.Categories.Any(c => c.Name == "New Category"));
+        }
+
         //[Given(@"she has another task she wants to set as a subtask")]
         //public void GivenSheHasAnotherTaskSheWantsToSetAsASubtask()
         //{
