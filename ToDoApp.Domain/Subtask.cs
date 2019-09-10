@@ -17,13 +17,20 @@ namespace ToDoApp.Domain
 
         public Guid TaskItemId { get; private set; }
         public TaskItem ParentTask { get; private set; }
-        
+
+        public DateTime Deadline { get; private set; }
+
         public void SetParentTask(TaskItem parent)
         {
             if (parent != null)
             {
                 ParentTask = parent;
             }
+        }
+
+        public void SetDeadline(DateTime deadline)
+        {
+            Deadline = deadline;
         }
     }
 }

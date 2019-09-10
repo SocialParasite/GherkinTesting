@@ -26,8 +26,6 @@ namespace ToDoApp.Domain
 
         public virtual DateTime CreationDate { get; protected set; }
 
-        public DateTime Deadline { get; private set; }
-
         public void SetName(string name)
         {
             if (name is null || name == String.Empty)
@@ -37,11 +35,6 @@ namespace ToDoApp.Domain
                 throw new ArgumentOutOfRangeException(nameof(name), "Name can not be longer than 64 characters.");
 
             Name = name;
-        }
-
-        public void SetDeadline(DateTime deadline)
-        {
-            Deadline = deadline;
         }
 
         public async Task SaveItemAsync()

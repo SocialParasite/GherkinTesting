@@ -55,14 +55,13 @@ Scenario: Setting a deadline
 	Given Eddie wants to set a deadline for the task
 	When he has a task selected
 	Then he should be able to select a deadline date for the task
-#
-#Scenario: Setting a category for the task
-#
+
+#Scenario: Setting a categories for the task
 #	Given Eddie wants to set a category for the task
-#	When he selects a task
+#	When he has a task selected
 #	And selects a category
 #	Then task should be added to that category
-#
+##
 #	Given Eddie wants to add a new category
 #	When he enters a category name
 #	And sets a identifying color for the category

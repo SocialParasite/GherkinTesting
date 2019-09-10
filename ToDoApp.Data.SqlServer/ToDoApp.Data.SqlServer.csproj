@@ -31,6 +31,8 @@
     <Compile Remove="Migrations\20190829153214_redone.Designer.cs" />
     <Compile Remove="Migrations\20190830103033_test.cs" />
     <Compile Remove="Migrations\20190830103033_test.Designer.cs" />
+    <Compile Remove="Migrations\20190910143643_deadline.cs" />
+    <Compile Remove="Migrations\20190910143643_deadline.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

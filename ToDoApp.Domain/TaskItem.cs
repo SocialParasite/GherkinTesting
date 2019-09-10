@@ -16,6 +16,8 @@ namespace ToDoApp.Domain
         public ICollection<Subtask> Subtasks { get; private set; }
         public ToDoList ParentList { get; private set; }
 
+        public DateTime Deadline { get; private set; }
+
         public void AddSubtask(Subtask item)
         {
             if (Subtasks is null)
@@ -32,6 +34,11 @@ namespace ToDoApp.Domain
             {
                 ParentList = parent;
             }
+        }
+
+        public void SetDeadline(DateTime deadline)
+        {
+            Deadline = deadline;
         }
     }
 }
