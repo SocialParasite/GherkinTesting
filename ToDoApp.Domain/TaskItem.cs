@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDoApp.Domain
 {
@@ -38,10 +34,11 @@ namespace ToDoApp.Domain
             }
         }
 
-        public void SetDeadline(DateTime deadline)
-        {
-            Deadline = deadline;
-        }
+        public void SetDeadline(DateTime deadline) 
+            => Deadline = deadline.ToUniversalTime();
+
+        public DateTime GetDeadline() 
+            => Deadline.ToLocalTime();
 
         public void AddCategory(Category category)
         {

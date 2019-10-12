@@ -126,7 +126,7 @@ namespace ToDoApp.DomainTests
         [Then(@"subtasks creation date and time are logged")]
         public void ThenSubtasksCreationDateAndTimeAreLogged()
         {
-            var creationDate = _subtask.CreationDate;
+            var creationDate = _subtask.GetCreationDate();
             Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
@@ -161,7 +161,9 @@ namespace ToDoApp.DomainTests
         [Then(@"he should be able to select a deadline date for the subtask")]
         public void ThenHeShouldBeAbleToSelectADeadlineDateForTheSubtask()
         {
-            _subtask.SetDeadline(DateTime.Today.AddDays(10));
+            var myDeadline = DateTime.Today.AddDays(10);
+            _subtask.SetDeadline(myDeadline);
+            Assert.That(_subtask.GetDeadline(), Is.EqualTo(myDeadline));
         }
     }
 }

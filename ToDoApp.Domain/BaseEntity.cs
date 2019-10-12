@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ToDoApp.Domain
@@ -24,7 +22,7 @@ namespace ToDoApp.Domain
         [MaxLength(64, ErrorMessage = "ToDo-list name should be maximum of 64 characters long.")]
         public string Name { get; protected set; }
 
-        public virtual DateTime CreationDate { get; protected set; }
+        public virtual DateTime CreationDate { get; private set; }
 
         public void SetName(string name)
         {
@@ -37,12 +35,18 @@ namespace ToDoApp.Domain
             Name = name;
         }
 
+        public void SetCreationDate() 
+            => CreationDate = DateTime.Now.ToUniversalTime();
+
+        public DateTime GetCreationDate() 
+            => CreationDate.ToLocalTime();
+
         public async Task SaveItemAsync()
         {
             if (Name != null && Name != String.Empty)
             {
                 if(CreationDate == default)
-                    CreationDate = DateTime.Now;
+                    SetCreationDate();
 
                 await _repository.SaveItemAsync();
             }

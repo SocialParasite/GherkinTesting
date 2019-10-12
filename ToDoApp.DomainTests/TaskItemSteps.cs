@@ -141,7 +141,7 @@ namespace ToDoApp.DomainTests
         [Then(@"tasks creation date and time are logged")]
         public void ThenTasksCreationDateAndTimeAreLogged()
         {
-            var creationDate = _item.CreationDate;
+            var creationDate = _item.GetCreationDate();
             Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
@@ -171,7 +171,7 @@ namespace ToDoApp.DomainTests
         [Then(@"tasks creation date and time are not changed")]
         public void ThenTasksCreationDateAndTimeAreNotChanged()
         {
-            Assert.That(_mock.Object.CreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
+            Assert.That(_mock.Object.GetCreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
         [Given(@"Eddie wants to set a deadline for the task")]
@@ -189,7 +189,11 @@ namespace ToDoApp.DomainTests
         [Then(@"he should be able to select a deadline date for the task")]
         public void ThenHeShouldBeAbleToSelectADeadlineDateForTheTask()
         {
-            _item.SetDeadline(DateTime.Today.AddDays(10));
+            Assert.That(_item.Deadline, Is.EqualTo(default(DateTime)));
+            var myDeadline = DateTime.Today.AddDays(10);
+            _item.SetDeadline(myDeadline);
+            Assert.That(_item.Deadline, Is.Not.EqualTo(default(DateTime)));
+            Assert.That(_item.GetDeadline(), Is.EqualTo(myDeadline));
         }
 
         [Given(@"Eddie has a task with (.*) categories")]

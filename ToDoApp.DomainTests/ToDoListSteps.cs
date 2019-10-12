@@ -140,7 +140,7 @@ namespace ToDoApp.DomainTests
         [Then(@"lists creation date and time are logged")]
         public void ThenListsCreationDateAndTimeAreLogged()
         {
-            var creationDate = _toDoList.CreationDate;
+            var creationDate = _toDoList.GetCreationDate();
             Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
