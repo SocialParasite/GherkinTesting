@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ToDoApp.Domain
+﻿namespace ToDoApp.Domain
 {
     public class Category : BaseEntity<Category>
     {

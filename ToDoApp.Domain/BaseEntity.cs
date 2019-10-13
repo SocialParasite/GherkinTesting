@@ -18,8 +18,8 @@ namespace ToDoApp.Domain
         public Guid Id { get; protected set; }
 
         [Required]
-        [MinLength(1, ErrorMessage = "ToDo-list name should be at minimum 1 character long.")]
-        [MaxLength(64, ErrorMessage = "ToDo-list name should be maximum of 64 characters long.")]
+        [MinLength(1, ErrorMessage = "Name should be at minimum 1 character long.")]
+        [MaxLength(64, ErrorMessage = "Name should be maximum of 64 characters long.")]
         public string Name { get; protected set; }
 
         public virtual DateTime CreationDate { get; private set; }

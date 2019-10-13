@@ -76,7 +76,3 @@ Scenario: Add Categories
 	Given Eddie wants to add a new category
 	When he enters a name for the category
 	Then category may be added
-#Given Eddie wants to add a new category
-#When he enters a category name
-#And sets a identifying color for the category
-#Then category may be created
