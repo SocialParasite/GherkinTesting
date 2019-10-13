@@ -7,12 +7,13 @@ namespace ToDoApp.Domain
     {
         internal TaskItem() { }
 
+        private DateTime _deadline;
+
         public TaskItem(IRepository<TaskItem> toDoItemRepository) : base(toDoItemRepository) { }
 
         public ICollection<TaskItem> Subtasks { get; private set; }
         public ToDoList ParentList { get; private set; }
 
-        public DateTime Deadline { get; private set; }
 
         public ICollection<Category> Categories { get; private set; }
 
@@ -35,10 +36,10 @@ namespace ToDoApp.Domain
         }
 
         public void SetDeadline(DateTime deadline) 
-            => Deadline = deadline.ToUniversalTime();
+            => _deadline = deadline.ToUniversalTime();
 
         public DateTime GetDeadline() 
-            => Deadline.ToLocalTime();
+            => _deadline == default ? default : _deadline.ToLocalTime();
 
         public void AddCategory(Category category)
         {

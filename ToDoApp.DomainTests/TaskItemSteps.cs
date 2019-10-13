@@ -214,10 +214,10 @@ namespace ToDoApp.DomainTests
         [Then(@"he should be able to select a deadline date for the task")]
         public void ThenHeShouldBeAbleToSelectADeadlineDateForTheTask()
         {
-            Assert.That(_item.Deadline, Is.EqualTo(default(DateTime)));
+            Assert.That(_item.GetDeadline(), Is.EqualTo(default(DateTime)));
             var myDeadline = DateTime.Today.AddDays(10);
             _item.SetDeadline(myDeadline);
-            Assert.That(_item.Deadline, Is.Not.EqualTo(default(DateTime)));
+            Assert.That(_item.GetDeadline(), Is.Not.EqualTo(default(DateTime)));
             Assert.That(_item.GetDeadline(), Is.EqualTo(myDeadline));
         }
 
@@ -251,28 +251,5 @@ namespace ToDoApp.DomainTests
         {
             Assert.That(_item.Categories.Any(c => c.Name == "New Category"));
         }
-
-        [Given(@"Eddie wants to add a new category")]
-        public void GivenEddieWantsToAddANewCategory()
-        {
-            _category = new Category(new Mock<IRepository<Category>>().Object);
-        }
-
-        [When(@"he enters a name for the category")]
-        public void WhenHeEntersANameForTheCategory()
-        {
-            _category.SetName("My Category");
-        }
-
-        [Then(@"category may be added")]
-        public void ThenCategoryMayBeAdded()
-        {
-            Action action = async () => await _category.SaveItemAsync();
-            Assert.DoesNotThrow(action.Invoke);
-
-            var creationDate = _category.GetCreationDate();
-            Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
-        }
-
     }
 }

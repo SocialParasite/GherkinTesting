@@ -71,8 +71,3 @@ Scenario Outline: Setting a categories for the task
 		| value |
 		| 0     |
 		| 1     |
-
-Scenario: Add Categories
-	Given Eddie wants to add a new category
-	When he enters a name for the category
-	Then category may be added

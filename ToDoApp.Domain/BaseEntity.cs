@@ -39,7 +39,7 @@ namespace ToDoApp.Domain
             => CreationDate = DateTime.Now.ToUniversalTime();
 
         public DateTime GetCreationDate() 
-            => CreationDate.ToLocalTime();
+            => CreationDate == default ? default : CreationDate.ToLocalTime();
 
         public async Task SaveItemAsync()
         {
