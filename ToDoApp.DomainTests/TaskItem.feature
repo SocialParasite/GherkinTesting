@@ -30,10 +30,16 @@ Scenario Outline: Required data should be provided when adding a new task item
 		| My ToDo-item | may     |
 		|              | may not |
 
-Scenario: It shall be possible to add tasks to ToDo-item
+Scenario: It shall be possible to add tasks as child tasks to other tasks
 	Given Jill has a ToDo-item open
 	When she adds a subtask to the item
 	Then subtask may be added to the ToDo-item
+
+Scenario: Adding another task as a subtask to Task item
+	Given Jill wants to add a subtask to task item
+	When she has a task selected that she wants to set as subtask
+	And she chooses a parent task item
+	Then the selected task is set as an child task to the the chosen task item
 
 Scenario: Adding a task to ToDo-list
 	Given Jill wants to add a task to ToDo-list
@@ -65,8 +71,12 @@ Scenario Outline: Setting a categories for the task
 		| value |
 		| 0     |
 		| 1     |
-#
-#	Given Eddie wants to add a new category
-#	When he enters a category name
-#	And sets a identifying color for the category
-#	Then category may be created
+
+Scenario: Add Categories
+	Given Eddie wants to add a new category
+	When he enters a name for the category
+	Then category may be added
+#Given Eddie wants to add a new category
+#When he enters a category name
+#And sets a identifying color for the category
+#Then category may be created

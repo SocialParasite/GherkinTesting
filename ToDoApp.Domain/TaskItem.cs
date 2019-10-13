@@ -9,18 +9,18 @@ namespace ToDoApp.Domain
 
         public TaskItem(IRepository<TaskItem> toDoItemRepository) : base(toDoItemRepository) { }
 
-        public ICollection<Subtask> Subtasks { get; private set; }
+        public ICollection<TaskItem> Subtasks { get; private set; }
         public ToDoList ParentList { get; private set; }
 
         public DateTime Deadline { get; private set; }
 
         public ICollection<Category> Categories { get; private set; }
 
-        public void AddSubtask(Subtask item)
+        public void AddSubtask(TaskItem item)
         {
             if (Subtasks is null)
             {
-                Subtasks = new List<Subtask>();
+                Subtasks = new List<TaskItem>();
             }
 
             Subtasks.Add(item);

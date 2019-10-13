@@ -12,10 +12,11 @@ namespace ToDoApp.DomainTests
     public class TaskItemSteps
     {
         private TaskItem _item;
+        private TaskItem _childTask;
         private Action _action;
         ToDoList _toDoList;
-        Subtask _subtask;
         Mock<TaskItem> _mock;
+        private Category _category;
 
         [Given(@"Jill has a ToDo-item open")]
         public void GivenJillNamesAToDo_Item()
@@ -89,14 +90,38 @@ namespace ToDoApp.DomainTests
         [When(@"she adds a subtask to the item")]
         public void WhenSheAddsATaskToTheItem()
         {
-            _subtask = new Subtask(new Mock<IRepository<Subtask>>().Object);
+            _childTask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
         }
 
         [Then(@"subtask may be added to the ToDo-item")]
         public void ThenTaskMayBeAddedToTheToDo_Item()
         {
-            _item.AddSubtask(_subtask);
+            _item.AddSubtask(_childTask);
             Assert.IsNotEmpty(_item.Subtasks);
+        }
+
+        [Given(@"Jill wants to add a subtask to task item")]
+        public void GivenJillWantsToAddASubtaskToTaskItem()
+        {
+            _childTask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
+        }
+
+        [When(@"she has a task selected that she wants to set as subtask")]
+        public void WhenSheHasATaskSelectedThatSheWantsToSetAsSubtask()
+        {
+            _childTask.SetName("childtask");
+        }
+
+        [When(@"she chooses a parent task item")]
+        public void WhenSheChoosesAParentTaskItem()
+        {
+            _item = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
+        }
+
+        [Then(@"the selected task is set as an child task to the the chosen task item")]
+        public void ThenTheSelectedTaskIsSetAsAnChildTaskToTheTheChosenTaskItem()
+        {
+            _childTask.AddSubtask(_childTask);
         }
 
         [Given(@"Jill wants to add a task to ToDo-list")]
@@ -227,19 +252,27 @@ namespace ToDoApp.DomainTests
             Assert.That(_item.Categories.Any(c => c.Name == "New Category"));
         }
 
-        //[Given(@"she has another task she wants to set as a subtask")]
-        //public void GivenSheHasAnotherTaskSheWantsToSetAsASubtask()
-        //{
-        //    _subtask = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
-        //    _subtask.SetName("Convert to subtask");
-        //}
+        [Given(@"Eddie wants to add a new category")]
+        public void GivenEddieWantsToAddANewCategory()
+        {
+            _category = new Category(new Mock<IRepository<Category>>().Object);
+        }
 
-        //[Then(@"task should be added as a subtask to parent task")]
-        //public void ThenTaskShouldBeAddedAsASubtaskToParentTask()
-        //{
-        //    _item.AddSubtask(_subtask);
-        //    Assert.That(_item.Subtasks.Last(), Is.TypeOf<Subtask>());
-        //}
+        [When(@"he enters a name for the category")]
+        public void WhenHeEntersANameForTheCategory()
+        {
+            _category.SetName("My Category");
+        }
+
+        [Then(@"category may be added")]
+        public void ThenCategoryMayBeAdded()
+        {
+            Action action = async () => await _category.SaveItemAsync();
+            Assert.DoesNotThrow(action.Invoke);
+
+            var creationDate = _category.GetCreationDate();
+            Assert.That(creationDate, Is.EqualTo(DateTime.Now).Within(1).Minutes);
+        }
 
     }
 }
