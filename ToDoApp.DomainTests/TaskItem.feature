@@ -58,13 +58,13 @@ Scenario: Tasks modification
 	Then tasks creation date and time are not changed
 
 Scenario: Setting a deadline
-	Given Eddie wants to set a deadline for the task
-	When he has a task selected
-	Then he should be able to select a deadline date for the task
+	Given Jill wants to set a deadline for the task
+	When she has a task selected
+	Then she should be able to select a deadline date for the task
 
 Scenario Outline: Setting a categories for the task
-	Given Eddie has a task with <value> categories
-	When he sets a category for the task
+	Given Jill has a task with <value> categories
+	When she sets a category for the task
 	Then task should be added to that category
 
 	Examples: Task could belong to more than one categories

@@ -16,7 +16,6 @@ namespace ToDoApp.DomainTests
         private Action _action;
         ToDoList _toDoList;
         Mock<TaskItem> _mock;
-        private Category _category;
 
         [Given(@"Jill has a ToDo-item open")]
         public void GivenJillNamesAToDo_Item()
@@ -199,20 +198,14 @@ namespace ToDoApp.DomainTests
             Assert.That(_mock.Object.GetCreationDate, Is.Not.EqualTo(DateTime.Now).Within(1).Minutes);
         }
 
-        [Given(@"Eddie wants to set a deadline for the task")]
-        public void GivenEddieWantsToSetADeadlineForTheTask()
+        [Given(@"Jill wants to set a deadline for the task")]
+        public void GivenJillWantsToSetADeadlineForTheTask()
         {
             _item = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
         }
 
-        [When(@"he has a task selected")]
-        public void WhenHeHasATaskSelected()
-        {
-            _item.SetName("Task with a deadline");
-        }
-
-        [Then(@"he should be able to select a deadline date for the task")]
-        public void ThenHeShouldBeAbleToSelectADeadlineDateForTheTask()
+        [Then(@"she should be able to select a deadline date for the task")]
+        public void ThenSheShouldBeAbleToSelectADeadlineDateForTheTask()
         {
             Assert.That(_item.GetDeadline(), Is.EqualTo(default(DateTime)));
             var myDeadline = DateTime.Today.AddDays(10);
@@ -221,8 +214,8 @@ namespace ToDoApp.DomainTests
             Assert.That(_item.GetDeadline(), Is.EqualTo(myDeadline));
         }
 
-        [Given(@"Eddie has a task with (.*) categories")]
-        public void GivenEddieHasATaskWithCategories(int count)
+        [Given(@"Jill has a task with (.*) categories")]
+        public void GivenJillHasATaskWithCategories(int count)
         {
             _item = new TaskItem(new Mock<IRepository<TaskItem>>().Object);
             _item.SetName("Task with categories");
@@ -238,8 +231,8 @@ namespace ToDoApp.DomainTests
                 Assert.That(_item.Categories, Is.Null);
         }
 
-        [When(@"he sets a category for the task")]
-        public void WhenHeSetsACategoryForTheTask()
+        [When(@"she sets a category for the task")]
+        public void WhenSheSetsACategoryForTheTask()
         {
             var newCat = new Category(new Mock<IRepository<Category>>().Object);
             newCat.SetName("New Category");
